@@ -1,0 +1,55 @@
+Error server: https://stackoverflow.com/questions/46019284/throw-er-unhandled-error-event-nodejs
+
+
+Public Folder
+Public files that need to be public to the appliaction
+favicon
+logo
+manifest.json
+robots.txt
+
+/*After install:
+
+yarn start
+Starts the development server.
+
+yarn build
+Bundles the app into static files for production.
+
+yarn test
+Starts the test runner.
+
+yarn eject
+Removes this tool and copies build dependencies, configuration files
+and scripts into the app directory. If you do this, you can’t go back!
+
+*/
+
+//See about PWA and Github on Youtube 
+
+//JSX - JavaScript + XML
+//ReactDOM react-dom Browser
+//ReactNative react-native App
+//ReactTV react-tv App
+
+//Main Concept of React
+//Component 
+    //Is a function (App()) that return a content, could be HTML, CSS, Javascript
+    //One component for file (React Rules)
+    //Is a isolated block of HTML, CSS and JS that doesn't interfer with the rest of the appliaction
+//Property = Info that a Root(Father) component pass to a Son component
+    //Are the attributes of HTML.
+    //Pass through the param props of the function.
+    //The props is accessed using {props.title}
+    //Totally replicable
+    //You cannot have 2 or more components without have another one around, like a DIV for exemplo.
+    //With React you can use the FRAGMENT (<></>), tag without nomenclature
+//State = Is a info held(maintained) by the component. 
+//import React, { useState } from 'react'
+//Concept immutability React
+//Install React Dev Tools
+
+
+//Disrupt(Desestruturacao) = get a object or vector and divide in variables
+
+//See diference between var and let
