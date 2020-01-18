@@ -53,3 +53,48 @@ and scripts into the app directory. If you do this, you can’t go back!
 //Disrupt(Desestruturacao) = get a object or vector and divide in variables
 
 //See diference between var and let
+
+
+// Autocomplete React include in settings.json
+"emmet.syntaxProfiles": {
+    "javascript": "jsx",
+},
+"emmet.includeLanguages": {
+    "javascript": "javascriptreact",
+},
+
+
+Fonts Google
+https://fonts.google.com/specimen/Roboto?selection.family=Roboto:400,700
+
+{ useEffect }
+Trigger a function every time that a information change. 
+
+//console.log(position);
+document.getElementById('latitude').value = latitude;
+//Declarative programming = https://en.wikipedia.org/wiki/Declarative_programming
+//Imperative programming = https://en.wikipedia.org/wiki/Imperative_programming
+//https://codeburst.io/declarative-vs-imperative-programming-a8a7c93d9ad2
+
+
+//Access Api in different ports using CORS
+yarn add cors
+https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS
+
+//See fetch(Native) vs axios to access apis 
+yarn add axios 
+
+
+{} = Body of function
+() = return of function
+() = the same thing that put { return () } 
+
+Immutability = Don't use [].push
+Add = setDevs([...devs, response.data]);
+Remove = .filter
+Update = .map
+
+//See GoNative
+
+See Disallow template literal placeholder syntax in regular strings (no-template-curly-in-string)
+https://eslint.org/docs/rules/no-template-curly-in-string

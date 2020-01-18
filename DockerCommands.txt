@@ -5,8 +5,8 @@ Run command to access nodejs docker bin bash
 docker run -ti -v $(pwd):/opt/ui omnistack:v01 /bin/bash
 
 Run Server (NodeJs)
-docker run -ti -v $(pwd):/opt/ui -ti -p 80:3333 omnistack:v01 yarn dev
+docker run -ti -v $(pwd):/opt/ui -p 81:3333 omnistack:v01 yarn dev
 
 Run Server (React)
-docker run -ti -v $(pwd)/web:/opt/ui -ti -p 81:3000 omnistack:v01 yarn start
+docker run -ti -v $(pwd)/web:/opt/ui -p 80:3000 omnistack:v01 yarn start
 
