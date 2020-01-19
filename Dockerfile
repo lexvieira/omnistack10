@@ -6,13 +6,14 @@ WORKDIR /opt/ui
 
 #RUN npm install -g @angular/cli
 
-RUN yarn global add expo-cli
+#RUN yarn global add expo-cli
 
 USER 1000
 
 EXPOSE 3333
 EXPOSE 3000
-EXPOSE 19002
+EXPOSE 19000
+EXPOSE 19001
 
 CMD ["node", "-v"]
 
