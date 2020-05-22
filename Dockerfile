@@ -8,6 +8,8 @@ WORKDIR /opt/ui
 
 #RUN yarn global add expo-cli
 
+#RUN echo "fs.inotify.max_user_watches=524288" >> /etc/sysctl.conf
+
 USER 1000
 
 EXPOSE 3333
