@@ -12,7 +12,7 @@ module.exports = {
     //remove the => and create a name for the functions because now is a "named function" instead an "arrow functions"
     //abstraction
     async store (request, response){
-        console.log(request.body)
+        //console.log(request.body)
     
         //Disruption getting github_username    
         const { github_username, techs, latitude, longitude } = request.body;
@@ -23,7 +23,7 @@ module.exports = {
         if (!dev){
             const apiResponse = await axios.get(`https://api.github.com/users/${github_username}`)
         
-            console.log(apiResponse.data);
+            //console.log(apiResponse.data);
         
             //Disruption way
             const { name = login, avatar_url, bio } = apiResponse.data;
