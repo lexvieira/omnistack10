@@ -5,7 +5,7 @@ import  { requestPermissionsAsync, getCurrentPositionAsync } from 'expo-location
 import { MaterialIcons } from '@expo/vector-icons';
 
 import api from '../services/api';
-
+import { connect, disconnect, subscribeToNewDevs } from "../services/socket";
 
 function Main({ navigation }){
     const [devs, setDevs] = useState([]);
@@ -35,6 +35,25 @@ function Main({ navigation }){
         loadInitialPosition();
     }, []);
 
+
+    useEffect(() => {
+        subscribeToNewDevs(dev => setDevs([...devs, dev]));
+    }, [devs]); 
+
+    function setupWebsocket(){
+        disconnect();
+
+        const { latitude, longitude } = currentRegion;
+        
+        connect(
+            latitude,
+            longitude,
+            techs,
+        );
+
+        subscribeToNewDevs
+    }
+
     async function loadDevs(){
         const { latitude, longitude } = currentRegion;
 
@@ -47,6 +66,7 @@ function Main({ navigation }){
         });
         //console.log(response.data);
         setDevs(response.data);
+        setupWebsocket();
     }
 
     function handleRegionChanged(region){
@@ -70,7 +90,7 @@ function Main({ navigation }){
                                                 coordinate={{ 
                                                 latitude: dev.location.coordinates[1], 
                                                 longitude: dev.location.coordinates[0],                                                
-                                            }}>
+                                 E           }}>
                                         <Image style={styles.avatar} source={{ uri: dev.avatar_url }}/>
                                         <Callout onPress={() => {
                                             navigation.navigate('Profile', { github_username: dev.github_username })                     
