@@ -1,14 +1,14 @@
 const socketio = require('socket.io');
 const parseStringAsArray = require('./utils/parseStringAsArray')
 
-let io = socketio(server);
+//let io = socketio(server);
 
 const connections = [];
 
-exports.setup.Websocket = (server) => {
-    // console.log('ok');
-    //const io = socketio(server); Move to a global Varieble
-    io = socketio(server);
+exports.setupWebsocket = (server) => { 
+    //console.log('ok');
+    const io = socketio(server); //Move to a global Varieble
+    //io = socketio(server);
 
     io.on('connection', socket => {
         const { latitude, longitude, techs } = socket.handshake.query;
