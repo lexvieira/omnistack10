@@ -89,8 +89,8 @@ function Main({ navigation }){
                                                 key={dev._id}
                                                 coordinate={{ 
                                                 latitude: dev.location.coordinates[1], 
-                                                longitude: dev.location.coordinates[0],                                                
-                                 E           }}>
+                                                longitude: dev.location.coordinates[0],
+                                        }}>
                                         <Image style={styles.avatar} source={{ uri: dev.avatar_url }}/>
                                         <Callout onPress={() => {
                                             navigation.navigate('Profile', { github_username: dev.github_username })                     
