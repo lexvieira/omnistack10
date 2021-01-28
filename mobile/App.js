@@ -4,7 +4,7 @@ import { StatusBar, LogBox } from 'react-native';
 import Routes from './src/routes';
 
 LogBox.ignoreLogs([
-  'Unrecognized'
+  'Unrecognized event'
 ]);
 LogBox.ignoreAllLogs();//Ignore all log notifications
 

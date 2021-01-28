@@ -1,6 +1,7 @@
 import socketio from 'socket.io-client';
 
-const socket = socketio('http://192.168.1.70:81/', {
+const socket = socketio('http://192.168.1.70:81', {
+    //Same IP from your backend api
     autoConnect: false,
 });
 
@@ -15,11 +16,8 @@ function connect(latitude, longitude, techs){
         techs,
     }
  
-    socket.connect();
-
-    socket.on('message', text => {
-        console.log(text);
-    });
+    socket.connect();  
+    
 }
 
 function disconnect(){

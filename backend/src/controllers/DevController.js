@@ -11,9 +11,7 @@ module.exports = {
 
     //remove the => and create a name for the functions because now is a "named function" instead an "arrow functions"
     //abstraction
-    async store (request, response){
-        //console.log(request.body)
-    
+    async store (request, response){  
         //Disruption getting github_username    
         const { github_username, techs, latitude, longitude } = request.body;
         
@@ -47,16 +45,14 @@ module.exports = {
                 location,
             })
             
-            //Filter Connections WebSocket with 10km of Distance
-            //and match at least one Tech
+            //Filter WebSocket Connections with 10km of Distance
+            //And match at least one Technology
             const sendSocketMessageTo = findConnections(
                 { latitude, longitude },
                 techsarray, 
             )
-            
-            console.log(dev);
-            sendMessage(sendSocketMessageTo, 'new-dev', dev);
 
+            sendMessage(sendSocketMessageTo, 'new-dev', dev);
         }
 
         return response.json(dev);

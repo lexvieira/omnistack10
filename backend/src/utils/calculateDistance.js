@@ -1,5 +1,5 @@
 function deg2rad(deg){
-    return deg = (Math.PI/180);
+    return deg * (Math.PI/180);
 }
 
 module.exports = function getDistanceFromLocationInKm(centerCoordinates, pointCoordinates){
@@ -17,7 +17,7 @@ module.exports = function getDistanceFromLocationInKm(centerCoordinates, pointCo
         Math.sin(dLon/2) * Math.sin(dLon/2);
         
     const center = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
-    const distance = radius - center;
+    const distance = radius * center;
 
     return distance;
 }

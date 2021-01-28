@@ -12,10 +12,10 @@ function Main({ navigation }){
     const [currentRegion, setCurrentRegion] = useState(null);
     const [techs, setTechs] = useState('');
 
-    //https://www.sisense.com/blog/latitude-longitude-distance-calculation-explained/
     useEffect(() => {
         async function loadInitialPosition(){
             const { granted } = await requestPermissionsAsync();
+            
             if (granted){
                 const { coords } = await getCurrentPositionAsync({
                      enableHighAccuracy: true,
@@ -35,16 +35,13 @@ function Main({ navigation }){
         loadInitialPosition();
     }, []);
 
-     useEffect(() => {
-        subscribeToNewDevs(dev => setDevs([...devs, dev]));
-            // console.log('New Dev');
-            // console.log(dev);
-            // // console.log('Devs');    
-            // // console.log(devs);        
+    useEffect(() => {
+        subscribeToNewDevs(dev => {
+            setDevs([...devs, dev])
+        });    
     }, [devs]); 
 
     function setupWebsocket(){
-        console.log('Disconnect');
         disconnect();
 
         const { latitude, longitude } = currentRegion;
@@ -58,7 +55,7 @@ function Main({ navigation }){
 
     async function loadDevs(){
         const { latitude, longitude } = currentRegion;
-        console.log('Response Data');
+
         const response = await api.get('/search', {
             params: {
                 latitude,
@@ -66,9 +63,9 @@ function Main({ navigation }){
                 techs
             }
         });   
-        console.log('Setting Data');
+
         setDevs(response.data);
-        console.log(devs);
+        //console.log(devs);
         setupWebsocket();
     }
 
@@ -87,23 +84,23 @@ function Main({ navigation }){
                     initialRegion={currentRegion} 
                     style={styles.map} >
                     {devs.map(dev => (
-                                        <Marker 
-                                                key={dev._id}
-                                                coordinate={{ 
-                                                latitude: dev.location.coordinates[1], 
-                                                longitude: dev.location.coordinates[0],
-                                        }}>
-                                        <Image style={styles.avatar} source={{ uri: dev.avatar_url }}/>
-                                        <Callout onPress={() => {
-                                            navigation.navigate('Profile', { github_username: dev.github_username })                     
-                                        }}>
-                                            <View style={styles.callout}>
-                                                <Text style={styles.devName} >{dev.name}</Text>
-                                                <Text style={styles.devBio}>{dev.bio}</Text>
-                                                <Text style={styles.devTechs}>{dev.techs.join(', ')}</Text>    
-                                            </View>
-                                        </Callout>
-                                        </Marker> 
+                        <Marker 
+                                key={dev._id}
+                                coordinate={{ 
+                                latitude: dev.location.coordinates[1], 
+                                longitude: dev.location.coordinates[0],
+                        }}>
+                        <Image style={styles.avatar} source={{ uri: dev.avatar_url }}/>
+                        <Callout onPress={() => {
+                            navigation.navigate('Profile', { github_username: dev.github_username })                     
+                        }}>
+                            <View style={styles.callout}>
+                                <Text style={styles.devName} >{dev.name}</Text>
+                                <Text style={styles.devBio}>{dev.bio}</Text>
+                                <Text style={styles.devTechs}>{dev.techs.join(', ')}</Text>    
+                            </View>
+                        </Callout>
+                        </Marker> 
                     ))}
 
                     <Marker 
