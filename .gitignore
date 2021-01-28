@@ -1,9 +1,5 @@
-backend/src/tutorial.mobile.txt
 .vscode
 node_modules_docker/.yarn-integrity
-Comments.txt
-tutorial.react.txt
-tutorialreactnative.txt
-Websocket.txt
 .gitignore
 backend/node_modules/
+tutorials/
