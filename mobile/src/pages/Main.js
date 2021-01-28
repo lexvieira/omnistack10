@@ -12,15 +12,15 @@ function Main({ navigation }){
     const [currentRegion, setCurrentRegion] = useState(null);
     const [techs, setTechs] = useState('');
 
+    //https://www.sisense.com/blog/latitude-longitude-distance-calculation-explained/
     useEffect(() => {
         async function loadInitialPosition(){
             const { granted } = await requestPermissionsAsync();
-
             if (granted){
                 const { coords } = await getCurrentPositionAsync({
-                    enableHighAccuracy: true,
+                     enableHighAccuracy: true,
                 });
-
+                
                 const { latitude, longitude } = coords;
 
                 setCurrentRegion({
@@ -35,12 +35,16 @@ function Main({ navigation }){
         loadInitialPosition();
     }, []);
 
-
-    useEffect(() => {
+     useEffect(() => {
         subscribeToNewDevs(dev => setDevs([...devs, dev]));
+            // console.log('New Dev');
+            // console.log(dev);
+            // // console.log('Devs');    
+            // // console.log(devs);        
     }, [devs]); 
 
     function setupWebsocket(){
+        console.log('Disconnect');
         disconnect();
 
         const { latitude, longitude } = currentRegion;
@@ -50,27 +54,25 @@ function Main({ navigation }){
             longitude,
             techs,
         );
-
-        subscribeToNewDevs
     }
 
     async function loadDevs(){
         const { latitude, longitude } = currentRegion;
-
+        console.log('Response Data');
         const response = await api.get('/search', {
             params: {
                 latitude,
                 longitude,
                 techs
             }
-        });
-        //console.log(response.data);
+        });   
+        console.log('Setting Data');
         setDevs(response.data);
+        console.log(devs);
         setupWebsocket();
     }
 
     function handleRegionChanged(region){
-        //console.log(region);
         setCurrentRegion(region);
     }
 
@@ -103,6 +105,16 @@ function Main({ navigation }){
                                         </Callout>
                                         </Marker> 
                     ))}
+
+                    <Marker 
+                        key='myloc'
+                        coordinate={{
+                            latitude: currentRegion.latitude,
+                            longitude: currentRegion.longitude
+                        }}
+                        
+                    >
+                    </Marker>
                 </MapView>
                 <View style={styles.searchForm}>
                     <TextInput 
@@ -130,9 +142,9 @@ const styles = StyleSheet.create({
     avatar: {
         width: 54,
         height: 54,
-        borderRadius: 4,
-        borderWidth: 4,
-        borderColor: 'blue'
+        borderRadius: 30,
+        borderWidth: 2,
+        borderColor: 'gray'
     },
     callout:{
         width: 260,

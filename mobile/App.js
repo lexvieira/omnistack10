@@ -1,11 +1,12 @@
 import React from 'react';
-import { StatusBar, YellowBox } from 'react-native';
+import { StatusBar, LogBox } from 'react-native';
 
 import Routes from './src/routes';
 
-YellowBox.ignoreWarnings([
-  'unrecognized WebSocket'
+LogBox.ignoreLogs([
+  'Unrecognized'
 ]);
+LogBox.ignoreAllLogs();//Ignore all log notifications
 
 export default function App() {
   return (

@@ -6,7 +6,6 @@ const { findConnections, sendMessage } = require('../websocket');
 module.exports = {
     async index(request, response){
         const devs = await Dev.find();
-
         return response.json(devs);
     },
 
@@ -22,10 +21,9 @@ module.exports = {
         let dev = await Dev.findOne({ github_username });
 
         if (!dev){
+            //Get User Data from GitHub
             const apiResponse = await axios.get(`https://api.github.com/users/${github_username}`)
-        
-            console.log(apiResponse.data);
-        
+          
             //Disruption way
             const { name = login, avatar_url, bio } = apiResponse.data;
         
@@ -34,8 +32,6 @@ module.exports = {
         
             const techsarray = parseStringAsArray(techs);
 
-            console.log(techsarray);
-            
             //attempt to don't let the business rules inside the controllers
             const location = {
                 type: 'Point',
@@ -53,15 +49,13 @@ module.exports = {
             
             //Filter Connections WebSocket with 10km of Distance
             //and match at least one Tech
-
             const sendSocketMessageTo = findConnections(
                 { latitude, longitude },
                 techsarray, 
             )
-             
+            
+            console.log(dev);
             sendMessage(sendSocketMessageTo, 'new-dev', dev);
-
-
 
         }
 
