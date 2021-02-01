@@ -2,24 +2,14 @@ FROM node:12.14.1
 
 WORKDIR /opt/ui
 
-#RUN npm install npm@latest -g
+EXPOSE 3333 3000 19000 19001 19002 19006
 
-#RUN npm install -g @angular/cli
+RUN apt-get update 
 
-#RUN yarn global add expo-cli
+RUN yarn global add expo-cli
 
-#RUN echo "fs.inotify.max_user_watches=524288" >> /etc/sysctl.conf
+ENV PATH="$(yarn global bin):$PATH"
 
 USER 1000
 
-EXPOSE 3333
-EXPOSE 3000
-EXPOSE 19000
-EXPOSE 19001
-
 CMD ["node", "-v"]
-
-#CMD ["ng", "serve", "--host=0.0.0.0", "--port=4200", "--disable-host-check"]
-
-#Example from: https://appdividend.com/2019/06/04/angular-8-tutorial-with-example-learn-angular-8-crud-from-scratch/
-
